@@ -7,42 +7,22 @@
 function getMinMax(string) {
   let a = [];
   let i = 0;
-  let str = string;
+  let str = string.replace(/[^-\.\d-]/g, ' ');
   while (true){
-    const end1 = str.indexOf(' ');
-    const end2 = str.indexOf(',');
-    if((end1 === -1 || end1 === str.length - 1) && (end2 === -1 || end2 === str.length - 1)){
+    const end = str.indexOf(' ');
+    if(end === -1 || end === str.length - 1){
       const k = parseFloat(str);
       if(!isNaN(k)){
         a[i] = k;
       }
       break;
-    } else if ((end1 === -1 || end1 === str.length - 1) && (end2 !== -1 && end2 !== str.length - 1)){
-      const x = parseFloat(str.slice(0, end2));
+    } else if (end !== -1 && end !== str.length - 1){
+      const x = parseFloat(str.slice(0, end));
       if(isNaN(x)){
-        str = str.slice(end2 + 1);
+        str = str.slice(end + 1);
       } else{
         a[i] = x;
-        str = str.slice(end2 + 1);
-        i++;
-      }
-    } else if ((end2 === -1 || end2 === str.length - 1) && (end1 !== -1 && end1 !== str.length - 1)){
-      const y = parseFloat(str.slice(0, end1));
-      if(isNaN(y)){
-        str = str.slice(end1 + 1);
-      } else{
-        a[i] = y;
-        str = str.slice(end1 + 1);
-        i++;
-      }
-    } else{
-      const pos = end1 < end2 ? end1 : end2
-      const z = parseFloat(str.slice(0, pos));
-      if(isNaN(z)){
-        str = str.slice(pos + 1);
-      } else{
-        a[i] = z;
-        str = str.slice(pos + 1);
+        str = str.slice(end + 1);
         i++;
       }
     }
