@@ -53,17 +53,13 @@ function getMinMax(string) {
   isFirstTime = true;
   let str = string.replace(/[^-\.\d-]/g, ' ');
   let number;
-  
+
   fillInMinMax(str, number);
   if (maxim !== undefined && minim !== undefined) {
     return { max: maxim, min: minim };
   }
   return {};
 }
-
-var strng = '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028';
-console.log(getMinMax(strng));
-
 /* ============================================= */
 
 /**
@@ -142,7 +138,7 @@ function printNumbers(max, cols) {
   const strNum = Math.ceil(max / cols);
   let res = ' ';
   const a = fillInArray(max, strNum, cols);
-  
+
   for (let i = 0; i < a.length; i++) {
     res += a[i];
     if (i === a.length - 1) {
