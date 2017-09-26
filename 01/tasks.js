@@ -6,8 +6,9 @@
 */
 let maxim;
 let minim;
+let isFirstTime;
 
-function checkFirstMaxMin(number, isFirstTime) {
+function checkFirstMaxMin(number) {
   if (isFirstTime) {
     maxim = number;
     minim = number;
@@ -22,14 +23,14 @@ function checkFirstMaxMin(number, isFirstTime) {
   }
 }
 
-function fillInMinMax(str, number, isFirstTime) {
+function fillInMinMax(str, number) {
   while (true) {
     const end = str.indexOf(' ');
 
     if (end === -1 || end === str.length - 1) {
       number = parseFloat(str);
       if (!isNaN(number)) {
-        checkFirstMaxMin(number, isFirstTime);
+        checkFirstMaxMin(number);
       }
       break;
     }
@@ -38,7 +39,7 @@ function fillInMinMax(str, number, isFirstTime) {
       if (isNaN(number)) {
         str = str.slice(end + 1);
       } else {
-        checkFirstMaxMin(number, isFirstTime);
+        checkFirstMaxMin(number);
         str = str.slice(end + 1);
       }
     }
@@ -49,16 +50,19 @@ function fillInMinMax(str, number, isFirstTime) {
 }
 
 function getMinMax(string) {
-  let isFirstTime = true;
+  isFirstTime = true;
   let str = string.replace(/[^-\.\d-]/g, ' ');
   let number;
   
-  fillInMinMax(str, number, isFirstTime);
+  fillInMinMax(str, number);
   if (maxim !== undefined && minim !== undefined) {
     return { max: maxim, min: minim };
   }
   return {};
 }
+
+var strng = '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028';
+console.log(getMinMax(strng));
 
 /* ============================================= */
 
