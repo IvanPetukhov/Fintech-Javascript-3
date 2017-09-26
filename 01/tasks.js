@@ -4,58 +4,58 @@
  * @return {{min: number, max: number}} объект с минимумом и максимумом
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
 */
-function getMinMax(string){
-  let max;
-  let min;
-  let isFirstTime = true;
-  let str = string.replace(/[^-\.\d-]/g, ' ');
-  let number;
+let maxim;
+let minim;
 
+function checkFirstMaxMin(number, isFirstTime) {
+  if (isFirstTime) {
+    maxim = number;
+    minim = number;
+    isFirstTime = false;
+  } else {
+    if (maxim < number) {
+      maxim = number;
+    }
+    if (minim > number) {
+      minim = number;
+    }
+  }
+}
+
+function fillInMinMax(str, number, isFirstTime) {
   while (true) {
     const end = str.indexOf(' ');
 
     if (end === -1 || end === str.length - 1) {
       number = parseFloat(str);
       if (!isNaN(number)) {
-        if (isFirstTime) {
-          max = number;
-          min = number;
-          isFirstTime = false;
-        } else {
-          if (max < number) {
-            max = number;
-          }
-          if (min > number) {
-            min = number;
-          }
-        }
+        checkFirstMaxMin(number, isFirstTime);
       }
       break;
-    } else if (end !== -1 && end !== str.length - 1) {
+    }
+    if (end !== -1 && end !== str.length - 1) {
       number = parseFloat(str.slice(0, end));
       if (isNaN(number)) {
         str = str.slice(end + 1);
       } else {
-        if (isFirstTime) {
-          max = number;
-          min = number;
-          isFirstTime = false;
-        } else {
-          if (max < number) {
-            max = number;
-          }
-          if (min > number) {
-            min = number;
-          }
-        }
+        checkFirstMaxMin(number, isFirstTime);
         str = str.slice(end + 1);
       }
     }
-    if (str === null)
-      {break;}
+    if (str === null) {
+      break;
+    }
   }
-  if (max !== undefined && min !== undefined) {
-    return { max: max, min: min };
+}
+
+function getMinMax(string) {
+  let isFirstTime = true;
+  let str = string.replace(/[^-\.\d-]/g, ' ');
+  let number;
+  
+  fillInMinMax(str, number, isFirstTime);
+  if (maxim !== undefined && minim !== undefined) {
+    return { max: maxim, min: minim };
   }
   return {};
 }
@@ -124,17 +124,24 @@ function fibonacciWithCache(x) {
  * @param  {number} cols количество столбцов
  * @return {string}
  */
-function printNumbers(max, cols) {
-  const strNum = Math.ceil(max / cols);
-  let res = ' ';
+
+function fillInArray(max, strNum, cols) {
   const a = [];
 
   for (let i = 0; i <= max; i++) {
     a[Math.trunc(i / strNum) + (i % strNum) * cols] = i;
   }
+  return a;
+}
+
+function printNumbers(max, cols) {
+  const strNum = Math.ceil(max / cols);
+  let res = ' ';
+  const a = fillInArray(max, strNum, cols);
+  
   for (let i = 0; i < a.length; i++) {
     res += a[i];
-    if (i == a.length - 1) {
+    if (i === a.length - 1) {
       break;
     }
     if ((i + 1) % cols === 0) {
@@ -143,11 +150,11 @@ function printNumbers(max, cols) {
       } else {
         res += '\n';
       }
-    } else  if(Math.trunc(a[i + 1] / 10) === 0){
-              res += "  ";
-          } else{
-              res += " ";
-          }
+    } else if (Math.trunc(a[i + 1] / 10) === 0) {
+      res += '  ';
+    } else {
+      res += ' ';
+    }
   }
   return res;
 }
