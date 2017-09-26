@@ -3,75 +3,79 @@
  * @param  {string} string входная строка(числа отделены от других частей строки пробелами или знаками препинания)
  * @return {{min: number, max: number}} объект с минимумом и максимумом
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
- */
-function getMinMax(string) {
-    let max, min;
-    let isFirstTime = true;
-    let str = string.replace(/[^-\.\d-]/g, ' ');
-    let number;
-    while (true){
-      const end = str.indexOf(' ');
-      if(end === -1 || end === str.length - 1){
-        number = parseFloat(str);
-        if(!isNaN(number)){
-          if (isFirstTime){
+*/
+function getMinMax(string){
+  let max;
+  let min;
+  let isFirstTime = true;
+  let str = string.replace(/[^-\.\d-]/g, ' ');
+  let number;
+
+  while (true) {
+    const end = str.indexOf(' ');
+
+    if (end === -1 || end === str.length - 1) {
+      number = parseFloat(str);
+      if (!isNaN(number)) {
+        if (isFirstTime) {
+          max = number;
+          min = number;
+          isFirstTime = false;
+        } else {
+          if (max < number) {
             max = number;
-            min = number;
-            isFirstTime = false;
-          } else{
-            if (max < number){
-              max = number;
-            }
-            if (min > number){
-              min = number;
-            }
           }
-        }
-        break;
-      } else if (end !== -1 && end !== str.length - 1){
-        number = parseFloat(str.slice(0, end));
-        if(isNaN(number)){
-          str = str.slice(end + 1);
-        } else{
-          if (isFirstTime){
-            max = number;
+          if (min > number) {
             min = number;
-            isFirstTime = false;
-          } else{
-            if (max < number){
-              max = number;
-            }
-            if (min > number){
-              min = number;
-            }
           }
-          str = str.slice(end + 1);
         }
       }
-      if (str === null)
-        break;
+      break;
+    } else if (end !== -1 && end !== str.length - 1) {
+      number = parseFloat(str.slice(0, end));
+      if (isNaN(number)) {
+        str = str.slice(end + 1);
+      } else {
+        if (isFirstTime) {
+          max = number;
+          min = number;
+          isFirstTime = false;
+        } else {
+          if (max < number) {
+            max = number;
+          }
+          if (min > number) {
+            min = number;
+          }
+        }
+        str = str.slice(end + 1);
+      }
     }
-    if (max !== undefined && min !== undefined){
-      return {"max" : max, "min" : min};
-    }
-    return {};
+    if (str === null)
+      {break;}
   }
+  if (max !== undefined && min !== undefined) {
+    return { max: max, min: min };
+  }
+  return {};
+}
 
 /* ============================================= */
 
 /**
  * Напишите рекурсивную функцию вычисления чисел Фибоначчи
- * @param {number} x номер числа
- * @return {number} число под номером х
+ * @param {number} x номер числа 
+ * @return {number} число под номером х 
  */
 function fibonacciSimple(x) {
-  if (x === 1){
-      return 1;
+  if (x === 1) {
+    return 1;
   }
-  if (x === 2){
-      return 1;
+  if (x === 2) {
+    return 1;
   }
-  let res = fibonacciSimple(x-2) + fibonacciSimple(x-1);
+  const res = fibonacciSimple(x - 2) + fibonacciSimple(x - 1);
+
   return res;
 }
 
@@ -83,23 +87,24 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-let cache = {};
+const cache = {};
 
 function fibonacciWithCache(x) {
-    if (x in cache){
-        return cache[x];
-    }
-    if (x === 1){
-        cache[1] = 1;
-        return 1;
-    }
-    if (x === 2){
-        cache[2] =  1;
-        return 1;
-    }
-    let res = fibonacciWithCache(x-2) + fibonacciWithCache(x-1);
-    cache[x] = res;
-    return res;
+  if (x in cache) {
+    return cache[x];
+  }
+  if (x === 1) {
+    cache[1] = 1;
+    return 1;
+  }
+  if (x === 2) {
+    cache[2] = 1;
+    return 1;
+  }
+  const res = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
+
+  cache[x] = res;
+  return res;
 }
 
 /* ============================================= */
@@ -120,30 +125,29 @@ function fibonacciWithCache(x) {
  * @return {string}
  */
 function printNumbers(max, cols) {
-  let strNum = Math.ceil(max / cols);
-  let res = " ";
-  let a = [];
-  for(let i = 0; i <= max; i++){
-      a[Math.trunc(i / strNum) + (i % strNum) * cols] = i;
+  const strNum = Math.ceil(max / cols);
+  let res = ' ';
+  const a = [];
+
+  for (let i = 0; i <= max; i++) {
+    a[Math.trunc(i / strNum) + (i % strNum) * cols] = i;
   }
-  for(let i = 0; i < a.length; i++){
-      res += a[i];
-      if (i == a.length - 1){
-          break;
+  for (let i = 0; i < a.length; i++) {
+    res += a[i];
+    if (i == a.length - 1) {
+      break;
+    }
+    if ((i + 1) % cols === 0) {
+      if (Math.trunc(a[i + 1] / 10) === 0) {
+        res += '\n ';
+      } else {
+        res += '\n';
       }
-      if((i + 1) % cols === 0){
-          if (Math.trunc(a[i + 1] / 10) === 0){
-              res += "\n ";
-          } else{
-              res += "\n";
-          }
-      } else{
-          if(Math.trunc(a[i + 1] / 10) === 0){
+    } else  if(Math.trunc(a[i + 1] / 10) === 0){
               res += "  ";
           } else{
               res += " ";
           }
-      }
   }
   return res;
 }
@@ -157,19 +161,21 @@ function printNumbers(max, cols) {
  */
 function rle(input) {
   let i = 0;
-  let str = "";
-  while(i < input.length){
-      let count = 1;
-      while(input[i] === input[i + count]){
-          count++;
-      }
-      if(count !== 1){
-          str += input[i] + count;
-          i += count;
-      } else{
-          str += input[i];
-          i++;
-      }
+  let str = '';
+
+  while (i < input.length) {
+    let count = 1;
+
+    while (input[i] === input[i + count]) {
+      count++;
+    }
+    if (count !== 1) {
+      str += input[i] + count;
+      i += count;
+    } else {
+      str += input[i];
+      i++;
+    }
   }
   return str;
 }
