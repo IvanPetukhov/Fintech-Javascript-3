@@ -5,46 +5,57 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
-  let a = [];
-  let i = 0;
-  let str = string.replace(/[^-\.\d-]/g, ' ');
-  while (true){
-    const end = str.indexOf(' ');
-    if(end === -1 || end === str.length - 1){
-      const k = parseFloat(str);
-      if(!isNaN(k)){
-        a[i] = k;
+    let max, min;
+    let isFirstTime = true;
+    let str = string.replace(/[^-\.\d-]/g, ' ');
+    let number;
+    while (true){
+      const end = str.indexOf(' ');
+      if(end === -1 || end === str.length - 1){
+        number = parseFloat(str);
+        if(!isNaN(number)){
+          if (isFirstTime){
+            max = number;
+            min = number;
+            isFirstTime = false;
+          } else{
+            if (max < number){
+              max = number;
+            }
+            if (min > number){
+              min = number;
+            }
+          }
+        }
+        break;
+      } else if (end !== -1 && end !== str.length - 1){
+        number = parseFloat(str.slice(0, end));
+        if(isNaN(number)){
+          str = str.slice(end + 1);
+        } else{
+          if (isFirstTime){
+            max = number;
+            min = number;
+            isFirstTime = false;
+          } else{
+            if (max < number){
+              max = number;
+            }
+            if (min > number){
+              min = number;
+            }
+          }
+          str = str.slice(end + 1);
+        }
       }
-      break;
-    } else if (end !== -1 && end !== str.length - 1){
-      const x = parseFloat(str.slice(0, end));
-      if(isNaN(x)){
-        str = str.slice(end + 1);
-      } else{
-        a[i] = x;
-        str = str.slice(end + 1);
-        i++;
-      }
+      if (str === null)
+        break;
     }
-    if (str === null)
-      break;
-  }
-  if (a.length !== 0){
-    let max = a[0];
-    let min = a[0];
-    for (let i = 0; i < a.length; i++){
-      if(a[i] > max){
-        max = a[i];
-      }
-      if(a[i] < min){
-        min = a[i];
-      }
+    if (max !== undefined && min !== undefined){
+      return {"max" : max, "min" : min};
     }
-    let res = {"max" : max, "min" : min};
-    return res;
+    return {};
   }
-  return {};
-}
 
 /* ============================================= */
 
