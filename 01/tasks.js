@@ -7,8 +7,12 @@
 function getMinMax(string) {
   const regex = /\-?\d+(\.\d)?\d*/g;
   const numbers = string.match(regex);
-  let minim = numbers.length > 0 ? parseFloat(numbers[0]) : undefined;
-  let maxim = numbers.length > 0 ? parseFloat(numbers[0]) : undefined;
+
+  if (numbers.length === 0) {
+    return {};
+  }
+  let minim = parseFloat(numbers[0]);
+  let maxim = parseFloat(numbers[0]);
 
   for (let i = 0; i < numbers.length; i++) {
     const num = parseFloat(numbers[i]);
@@ -16,10 +20,7 @@ function getMinMax(string) {
     minim = minim > num ? num : minim;
     maxim = maxim < num ? num : maxim;
   }
-  if (maxim !== undefined && minim !== undefined) {
-    return { max: maxim, min: minim };
-  }
-  return {};
+  return { max: maxim, min: minim };
 }
 /* ============================================= */
 
@@ -29,15 +30,10 @@ function getMinMax(string) {
  * @return {number} число под номером х 
  */
 function fibonacciSimple(x) {
-  if (x === 1 || x === 0) {
-    return x;
+  if (x === 1 || x === 0 || x === 2) {
+    return x > 0 ? 1 : 0;
   }
-  if (x === 2) {
-    return 1;
-  }
-  const res = fibonacciSimple(x - 2) + fibonacciSimple(x - 1);
-
-  return res;
+  return fibonacciSimple(x - 2) + fibonacciSimple(x - 1);
 }
 
 /* ============================================= */
@@ -48,27 +44,25 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-function fibonacciWithCache(x) {
-  var cache = {};
+function fibonacciWithCacheFunc(x) {
+  let cache = {};
   let res;
 
-  if (x in cache) {
-    res = cache[x];
+  return x => {
+    if (x in cache) {
+      return x;
+    }
+    if (x === 1 || x === 0 || x === 2) {
+      res = x > 0 ? 1 : 0;
+    } else {
+      res = fibonacciWithCacheFunc(x - 2) + fibonacciWithCacheFunc(x - 1);
+    }
+    cache[x] = res;
     return res;
   }
-  if (x === 1 || x === 0) {
-    res = x;
-  }
-  if (x === 2) {
-    res = 1;
-  }
-  if (x > 2) {
-    res = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
-  }
-
-  cache[x] = res;
-  return res;
 }
+
+const fibonacciWithCache = fibonacciWithCacheFunc();
 
 /* ============================================= */
 
@@ -87,36 +81,50 @@ function fibonacciWithCache(x) {
  * @param  {number} cols количество столбцов
  * @return {string}
  */
-
 function fillInArray(max, strNum, cols) {
-  const a = [];
-
-  for (let i = 0; i <= max; i++) {
-    a[Math.trunc(i / strNum) + (i % strNum) * cols] = i;
+  let a = [];
+  for (let i = 0; i < strNum; i++)
+    a[i] = [];
+  a[0][0] = 0;
+  for (let i = 1; i < cols; i++) {
+    a[0][i] = ((a[0][i - 1] + strNum) <= max) ? (a[0][i - 1] + strNum) : (a[0][i - 1] + 1);
+  }
+  for (let i = 0; i < cols; i++) {
+    if (i !== cols - 1) {
+      for (let j = a[0][i] + 1; j < a[0][i + 1]; j++) {
+        a[j - a[0][i]][i] = a[j - a[0][i] - 1][i] + 1;
+      }
+    } else {
+      for (let j = a[0][i] + 1; j <= max; j++) {
+        a[j - a[0][i]][i] = a[j - a[0][i] - 1][i] + 1;
+      }
+    }
   }
   return a;
 }
 
 function printNumbers(max, cols) {
-  const strNum = Math.ceil(max / cols);
+  const strNum = Math.ceil((max + 1) / cols);
   let res = ' ';
   const a = fillInArray(max, strNum, cols);
 
-  for (let i = 0; i < a.length; i++) {
-    res += a[i];
-    if (i === a.length - 1) {
-      break;
-    }
-    if ((i + 1) % cols === 0) {
-      if (Math.trunc(a[i + 1] / 10) === 0) {
-        res += '\n ';
+  for (let i = 0; i < strNum; i++) {
+    for (let j = 0; j < a[i].length; j++) {
+    res += a[i][j];
+      if (j === a[i].length - 1) {
+        if (i === strNum - 1){
+          return res;
+        }
+        if (Math.trunc(a[i + 1][0] / 10) === 0) {
+          res += '\n ';
+        } else {
+          res += '\n';
+        }
+      } else if (Math.trunc(a[i][j + 1] / 10) === 0) {
+        res += '  ';
       } else {
-        res += '\n';
+        res += ' ';
       }
-    } else if (Math.trunc(a[i + 1] / 10) === 0) {
-      res += '  ';
-    } else {
-      res += ' ';
     }
   }
   return res;
