@@ -52,7 +52,7 @@ function fibonacciWithCacheFunc(x) {
 
   return x => {
     if (x in cache) {
-      return x;
+      return cache[x];
     }
     if (x === 1 || x === 0 || x === 2) {
       res = x > 0 ? 1 : 0;
