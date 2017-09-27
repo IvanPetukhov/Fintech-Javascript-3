@@ -48,21 +48,23 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-const cache = {};
-
 function fibonacciWithCache(x) {
+  var cache = {};
+  let res;
+
   if (x in cache) {
-    return cache[x];
+    res =  cache[x];
+    return res;
   }
-  if (x === 1) {
-    cache[1] = 1;
-    return 1;
+  if (x === 1 || x === 0) {
+    res = x;
   }
   if (x === 2) {
-    cache[2] = 1;
-    return 1;
+    res = 1;
   }
-  const res = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
+  if (x > 2) {
+    res = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
+  }
 
   cache[x] = res;
   return res;
