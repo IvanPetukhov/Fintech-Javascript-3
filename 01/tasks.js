@@ -4,57 +4,18 @@
  * @return {{min: number, max: number}} объект с минимумом и максимумом
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
 */
-let maxim;
-let minim;
-let isFirstTime;
-
-function checkFirstMaxMin(number) {
-  if (isFirstTime) {
-    maxim = number;
-    minim = number;
-    isFirstTime = false;
-  } else {
-    if (maxim < number) {
-      maxim = number;
-    }
-    if (minim > number) {
-      minim = number;
-    }
-  }
-}
-
-function fillInMinMax(str, number) {
-  while (true) {
-    const end = str.indexOf(' ');
-
-    if (end === -1 || end === str.length - 1) {
-      number = parseFloat(str);
-      if (!isNaN(number)) {
-        checkFirstMaxMin(number);
-      }
-      break;
-    }
-    if (end !== -1 && end !== str.length - 1) {
-      number = parseFloat(str.slice(0, end));
-      if (isNaN(number)) {
-        str = str.slice(end + 1);
-      } else {
-        checkFirstMaxMin(number);
-        str = str.slice(end + 1);
-      }
-    }
-    if (str === null) {
-      break;
-    }
-  }
-}
-
 function getMinMax(string) {
-  isFirstTime = true;
-  let str = string.replace(/[^-\.\d-]/g, ' ');
-  let number;
+  const regex = /\-?\d+(\.\d)?\d*/g;
+  const numbers = string.match(regex);
+  let minim = numbers.length > 0 ? parseFloat(numbers[0]) : undefined;
+  let maxim = numbers.length > 0 ? parseFloat(numbers[0]) : undefined;
 
-  fillInMinMax(str, number);
+  for (let i = 0; i < numbers.length; i++) {
+    const num = parseFloat(numbers[i]);
+
+    minim = minim > num ? num : minim;
+    maxim = maxim < num ? num : maxim;
+  }
   if (maxim !== undefined && minim !== undefined) {
     return { max: maxim, min: minim };
   }
@@ -68,16 +29,16 @@ function getMinMax(string) {
  * @return {number} число под номером х 
  */
 function fibonacciSimple(x) {
-  if (x === 1) {
-    return 1;
+    if (x === 1 || x === 0) {
+      return x;
+    }
+    if (x === 2) {
+      return 1;
+    }
+    const res = fibonacciSimple(x - 2) + fibonacciSimple(x - 1);
+  
+    return res;
   }
-  if (x === 2) {
-    return 1;
-  }
-  const res = fibonacciSimple(x - 2) + fibonacciSimple(x - 1);
-
-  return res;
-}
 
 /* ============================================= */
 
