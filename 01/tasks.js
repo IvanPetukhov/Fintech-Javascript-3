@@ -61,8 +61,7 @@ function fibonacciWithCacheFunc(x) {
     }
     cache[x] = res;
     return res;
-  }
-
+  };
 }
 
 fibonacciWithCache = fibonacciWithCacheFunc();
