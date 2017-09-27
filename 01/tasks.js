@@ -62,6 +62,7 @@ function fibonacciWithCacheFunc(x) {
     cache[x] = res;
     return res;
   }
+
 }
 
 fibonacciWithCache = fibonacciWithCacheFunc();
@@ -114,7 +115,7 @@ function printNumbers(max, cols) {
 
   for (let i = 0; i < strNum; i++) {
     for (let j = 0; j < a[i].length; j++) {
-    res += a[i][j];
+      res += a[i][j];
       if (j === a[i].length - 1) {
         if (i === strNum - 1) {
           return res;
