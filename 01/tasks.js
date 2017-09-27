@@ -44,6 +44,8 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
+let fibonacciWithCache;
+
 function fibonacciWithCacheFunc(x) {
   let cache = {};
   let res;
@@ -55,14 +57,14 @@ function fibonacciWithCacheFunc(x) {
     if (x === 1 || x === 0 || x === 2) {
       res = x > 0 ? 1 : 0;
     } else {
-      res = fibonacciWithCacheFunc(x - 2) + fibonacciWithCacheFunc(x - 1);
+      res = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
     }
     cache[x] = res;
     return res;
   }
 }
 
-const fibonacciWithCache = fibonacciWithCacheFunc();
+fibonacciWithCache = fibonacciWithCacheFunc();
 
 /* ============================================= */
 
@@ -83,10 +85,12 @@ const fibonacciWithCache = fibonacciWithCacheFunc();
  */
 function fillInArray(max, strNum, cols) {
   let a = [];
-  for (let i = 0; i < strNum; i++)
+
+  for (let i = 0; i < strNum; i++) {
     a[i] = [];
+  }
   a[0][0] = 0;
-  for (let i = 1; i < cols; i++) {
+  for (let i = 1; i < cols && i <= max; i++) {
     a[0][i] = ((a[0][i - 1] + strNum) <= max) ? (a[0][i - 1] + strNum) : (a[0][i - 1] + 1);
   }
   for (let i = 0; i < cols; i++) {
@@ -112,7 +116,7 @@ function printNumbers(max, cols) {
     for (let j = 0; j < a[i].length; j++) {
     res += a[i][j];
       if (j === a[i].length - 1) {
-        if (i === strNum - 1){
+        if (i === strNum - 1) {
           return res;
         }
         if (Math.trunc(a[i + 1][0] / 10) === 0) {
