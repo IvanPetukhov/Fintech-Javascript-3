@@ -83,57 +83,30 @@ fibonacciWithCache = fibonacciWithCacheFunc();
  * @param  {number} cols количество столбцов
  * @return {string}
  */
-function fillInArray(max, strNum, cols) {
-  let a = [];
-
-  for (let i = 0; i < strNum; i++) {
-    a[i] = [];
-  }
-  a[0][0] = 0;
-  for (let i = 1; i < cols && i <= max; i++) {
-    a[0][i] = ((a[0][i - 1] + strNum) <= max) ? (a[0][i - 1] + strNum) : (a[0][i - 1] + 1);
-  }
-  for (let i = 0; i < cols; i++) {
-    if (i !== cols - 1) {
-      for (let j = a[0][i] + 1; j < a[0][i + 1]; j++) {
-        a[j - a[0][i]][i] = a[j - a[0][i] - 1][i] + 1;
-      }
-    } else {
-      for (let j = a[0][i] + 1; j <= max; j++) {
-        a[j - a[0][i]][i] = a[j - a[0][i] - 1][i] + 1;
-      }
-    }
-  }
-  return a;
-}
-
 function printNumbers(max, cols) {
-  const strNum = Math.ceil((max + 1) / cols);
-  let res = ' ';
-  const a = fillInArray(max, strNum, cols);
+  const rows = Math.ceil((max + 1) / cols);
+  let res = '';
+  let next;
 
-  for (let i = 0; i < strNum; i++) {
-    for (let j = 0; j < a[i].length; j++) {
-      res += a[i][j];
-      if (j === a[i].length - 1) {
-        if (i === strNum - 1) {
-          return res;
-        }
-        if (Math.trunc(a[i + 1][0] / 10) === 0) {
-          res += '\n ';
+  for (let i = 0; i < rows; i++) {
+    let resRow = '';
+
+    next = i;
+    for (let j = 0; j < cols; j++) {
+      if (next <= max) {
+        if (j === 0) {
+          resRow += next < 10 ? ' ' : '';
         } else {
-          res += '\n';
+          resRow += next < 10 ? '  ' : ' ';
         }
-      } else if (Math.trunc(a[i][j + 1] / 10) === 0) {
-        res += '  ';
-      } else {
-        res += ' ';
+        resRow += next;
       }
+      next += rows;
     }
+    res += resRow + '\n';
   }
   return res;
 }
-
 /* ============================================= */
 
 /**
