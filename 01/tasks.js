@@ -105,7 +105,7 @@ function printNumbers(max, cols) {
     }
     res += resRow + '\n';
   }
-  return res + '\n';
+  return res;
 }
 /* ============================================= */
 
