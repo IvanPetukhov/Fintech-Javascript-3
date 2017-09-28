@@ -103,7 +103,7 @@ function printNumbers(max, cols) {
       }
       next += rows;
     }
-    res += resRow + '\n';
+    res += (i !== rows - 1) ? (resRow + '\n') : resRow;
   }
   return res;
 }
