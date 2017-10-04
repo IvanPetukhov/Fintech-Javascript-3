@@ -3,10 +3,30 @@
  * Доп. задание: предложите несколько вариантов решения.
  */
 function timer(logger = console.log) {
+  /* //The first variant:
   for (let i = 0; i < 10; i++) {
     setTimeout(() => {
       logger(i);
     }, 100);
+  }
+  */
+  /* // The second variant:
+  let i = 0;
+
+  logger(i++);
+  const timePrint = setInterval(() => {
+    logger(i++);
+  }, 100);
+
+  setTimeout(() => {
+    clearInterval(timePrint);
+  }, 1000);
+  */
+  // The third variant:
+  for (let i = 0; i < 10; i++) {
+    (arg => setTimeout(() => {
+      logger(arg);
+    }, 100))(i);
   }
 }
 
@@ -20,8 +40,9 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
-  console.log(context);
-  return func.bind(context, ...args);
+  return function(...bindArgs) {
+    func.call(context, ...args, ...bindArgs);
+  };
 }
 
 /*= ============================================ */
@@ -34,7 +55,15 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x) {
-  return 0;
+  if (x === undefined) {
+    return 0;
+  }
+  return function(y) {
+    if (y === undefined) {
+      return x;
+    }
+    return sum(x + y);
+  }
 }
 
 /*= ============================================ */
