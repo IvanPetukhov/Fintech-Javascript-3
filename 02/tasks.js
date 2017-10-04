@@ -95,7 +95,14 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  return [];
+  let objectArr = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+
+    objectArr[element] = true;
+  }
+  return (Object.keys(objectArr)).map(Number).sort();
 }
 
 /**
