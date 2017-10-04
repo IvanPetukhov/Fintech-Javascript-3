@@ -63,7 +63,7 @@ function sum(x) {
       return x;
     }
     return sum(x + y);
-  }
+  };
 }
 
 /*= ============================================ */
@@ -95,7 +95,7 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  let objectArr = {};
+  const objectArr = {};
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
@@ -122,7 +122,7 @@ function getIntersection(first, second) {
       second.splice(pos, 1);
     }
   }
-  return resArray.sort((a, b) => {return a < b ? -1 : 1; });
+  return resArray.sort((a, b) => { return a < b ? -1 : 1; });
 }
 
 /* ============================================= */
@@ -141,7 +141,17 @@ function getIntersection(first, second) {
  * @return {boolean}
  */
 function isIsomorphic(left, right) {
+  if (left.length !== right.length) {
+    return false;
+  }
+  let count = 0;
 
+  for (let i = 0; i < left.length; i++) {
+    if (left[i] !== right[i]) {
+      count++;
+    }
+  }
+  return count === 1;
 }
 
 module.exports = {
