@@ -125,7 +125,6 @@ function getIntersection(first, second) {
   return resArray.sort((a, b) => {return a < b ? -1 : 1; });
 }
 
-getIntersection([1, 10, 3, 5, 7, 9], [3, 0, 10, 8]);
 /* ============================================= */
 
 /**
