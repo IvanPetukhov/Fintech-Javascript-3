@@ -112,9 +112,20 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  return [];
+  const resArray = [];
+
+  for (let i = 0; i < first.length; i++) {
+    const pos = second.indexOf(first[i]);
+
+    if (pos >= 0) {
+      resArray.push(second[pos]);
+      second.splice(pos, 1);
+    }
+  }
+  return resArray.sort((a, b) => {return a < b ? -1 : 1; });
 }
 
+getIntersection([1, 10, 3, 5, 7, 9], [3, 0, 10, 8]);
 /* ============================================= */
 
 /**
