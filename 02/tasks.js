@@ -75,15 +75,7 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
-  for (let i = 0; i < first.length; i++) {
-    const pos = second.indexOf(first[i]);
-
-    if (pos < 0) {
-      return false;
-    }
-    second[pos] = ' ';
-  }
-  return true;
+  return first.trim().split('').sort().join('') === second.trim().split('').sort().join('');
 }
 
 /*= ============================================ */
