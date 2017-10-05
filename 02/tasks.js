@@ -94,9 +94,8 @@ function getUnique(arr) {
 
     objectArr[element] = true;
   }
-  return (Object.keys(objectArr)).map(Number).sort();
+  return (Object.keys(objectArr)).map(Number).sort((a, b) => { return a < b ? -1 : 1; });
 }
-
 /**
  * Найдите пересечение двух массивов
  * [1, 3, 5, 7, 9] и [1, 2, 3, 4] → [1, 3]
