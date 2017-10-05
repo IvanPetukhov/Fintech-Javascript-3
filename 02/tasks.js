@@ -104,18 +104,26 @@ function getUnique(arr) {
  */
 function getIntersection(first, second) {
   const resArray = [];
+  let objArr = {};
 
+  for (let i = 0; i < second.length; i++) {
+    if (objArr[second[i]] !== undefined) {
+      objArr[second[i]] += 1;
+    } else {
+      objArr[second[i]] = 1;
+    }
+  }
   for (let i = 0; i < first.length; i++) {
-    const pos = second.indexOf(first[i]);
-
-    if (pos >= 0) {
-      resArray.push(second[pos]);
-      second.splice(pos, 1);
+    if (objArr[first[i]] > 1) {
+      resArray.push(first[i]);
+      objArr[first[i]] -= 1;
+    } else if (objArr[first[i]] === 1) {
+      resArray.push(first[i]);
+      objArr[first[i]] -= 1;
     }
   }
   return resArray.sort((a, b) => { return a < b ? -1 : 1; });
 }
-
 /* ============================================= */
 
 /**
