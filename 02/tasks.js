@@ -150,7 +150,7 @@ function isIsomorphic(left, right) {
       count++;
     }
   }
-  return count === 1;
+  return count <= 1;
 }
 
 module.exports = {
