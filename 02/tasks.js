@@ -75,7 +75,26 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
-  return first.trim().split('').sort().join('') === second.trim().split('').sort().join('');
+  const firstWordArr = first.trim().split('');
+  const secondWordArr = second.trim().split('');
+  const firstWordObj = {};
+
+  for (let i = 0; i < firstWordArr.length; i++) {
+    if (firstWordObj[firstWordArr[i]] !== undefined) {
+      firstWordObj[firstWordArr[i]] += 1;
+    } else {
+      firstWordObj[firstWordArr[i]] = 1;
+    }
+  }
+  for (let i = 0; i < secondWordArr.length; i++) {
+    if (firstWordObj[secondWordArr[i]] >= 1) {
+      firstWordObj[secondWordArr[i]] -= 1;
+      if (firstWordObj[secondWordArr[i]] === 0) {
+        delete firstWordObj[secondWordArr[i]];
+      }
+    }
+  }
+  return Object.keys(firstWordObj).length === 0;
 }
 
 /*= ============================================ */
@@ -104,7 +123,7 @@ function getUnique(arr) {
  */
 function getIntersection(first, second) {
   const resArray = [];
-  let objArr = {};
+  const objArr = {};
 
   for (let i = 0; i < second.length; i++) {
     if (objArr[second[i]] !== undefined) {
