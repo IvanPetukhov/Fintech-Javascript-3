@@ -6,6 +6,7 @@ Promise.all(
     fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
         reject('File read error: ', err);
+        console.log(err);
       }
 
       validator({ data, format: 'text' }).then(result => {
