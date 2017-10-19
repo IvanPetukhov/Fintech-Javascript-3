@@ -1,29 +1,29 @@
 body {
-    font-size: 32px;
-    margin: 10;
-    padding: 0 2rem;
+  font-size: 32px;
+  margin: 10;
+  padding: 0 2rem;
 }
 
 .firstTable {
-    border-collapse: collapse;
-    table-layout: fixed;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .firstTable thead{
-    text-align: bottom;
-    background: #E5FF00;
-    border-bottom: 2px;
+  text-align: bottom;
+  background: #E5FF00;
+  border-bottom: 2px;
 }
 
 .firstTable tr:nth-child(odd) {
-    background: #9FDCFF;
+  background: #9FDCFF;
 }
 
 .firstTable th:hover {
-    background: #1EE96C;
+  background: #1EE96C;
 }
 
 .firstTable th:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
