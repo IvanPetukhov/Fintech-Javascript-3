@@ -9,18 +9,18 @@ body {
   table-layout: fixed;
 }
 
-.firstTable thead{
+.firstTable thead {
   text-align: bottom;
-  background: #E5FF00;
+  background: #e5ff00;
   border-bottom: 2px;
 }
 
-.firstTable tr:nth-child(odd) {
-  background: #9FDCFF;
+.firstTable td:nth-child(odd) {
+  background: #9fdcff;
 }
 
 .firstTable th:hover {
-  background: #1EE96C;
+  background: #1ee96c;
 }
 
 .firstTable th:first-child {
