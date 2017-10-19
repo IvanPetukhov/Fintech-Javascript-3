@@ -1,5 +1,5 @@
 /**
- * Создайте класс, обладающий следующим поведением:
+ * Создайте класс,  обладающий следующим поведением:
  * const values = ['hello', 'javascript', 'world'];
  * const instances = values.map(str => new NumberAndString(str));
  *
