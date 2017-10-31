@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://github.com/necolas/normalize.css/">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,700&amp;subset=cyrillic" rel="stylesheet">
+    <title>Задание 5.4</title>
+</head>
+<body>
+    <h1 class = "form-header">Заполните несколько<br>простых полей</h1>
+    <div class = "form-wrapper">
+        <form class = "card-form">
+            <fieldset class = "form-fieldset">
+                <div class = "form-elem">
+                    <input id = "name-form" class = "input-elem" type = "text" required>
+                    <label class = "elem-label" for = "name-form">ФИО</label>
+                </div>
+                <div class = "form-elem">
+                    <input id = "city-form" class = "input-elem" type = "text" required>
+                    <label class = "elem-label" for = "city-form">Город проживания</label>
+                    <div class = "attention-sign"></div>
+                    <div class = "attention-message">Для заполнения этого поля не допустимо использовать буквы латинского алфавита</div>
+                </div>
+                <div class = "form-elem">
+                    <input id = "phone-form" class = "input-elem" type = "text" required>
+                    <label class = "elem-label" for = "phone-form">Мобильный телефон</label>
+                </div>
+                <div class = "form-elem">
+                    <input id = "email-form" class = "input-elem" type = "text" required>
+                    <label class = "elem-label" for = "email-form">Мобильный телефон</label>
+                    <div class = "question-sign">
+                        <p class = "question-message">Ваши данные замаскированы в целях безопасности. Для изменения информации с вами свяжется оператор колл-центра.</p>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class = "form-fieldset">
+                <legend class = "choice-legend">Выберите это или другое</legend>
+                <div class = "choice-area">
+                    <div class = "choice-form">
+                        <label class = "choice-label">Это
+                        <input type = "radio" class = "choice-field" name="radio" checked>
+                        <span class = "mark"></span>
+                        </label>
+                    </div>
+                    <div class = "choice-form">
+                        <label class = "choice-label">Другое
+                            <input type = "radio" class = "choice-field" name="radio">
+                            <span class = "mark"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <button class = "form-button">Отправить</button>
+        </form>
+    </div>
+<!--<h1>Сверстать форму. Pixel-perfect. Select делать не нужно</h1>
+<p>
+    Подробности по ссылке:
+    <a href="https://app.zeplin.io/project/58a307271a9f6d513890adc8/screen/58a3075a4ec334e848d7f333">
+        https://app.zeplin.io/project/58a307271a9f6d513890adc8/screen/58a3075a4ec334e848d7f333
+    </a>, для того чтобы получить доступ, нужно зарегестрироваться на
+    <a href="https://zeplin.io/">zeplin.io</a>, и попросить доступ у Евгения Мамаева.
+</p>
+<img src="./task.png" alt="">-->
+</body>
+</html>
