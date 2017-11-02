@@ -18,6 +18,7 @@ body {
 
 .menu {
   background-color: #3e4757;
+
   a {
     display: inline-block;
     padding: 25px 0 18px;
@@ -27,6 +28,7 @@ body {
     font-size: 13px;
     line-height: 1.4;
   }
+
   @media (max-width: 640px) {
     display: none;
   }
@@ -41,11 +43,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .menu__item {
   transition: border-bottom-color 0.15s ease-in-out;
+
   &_active {
     border-bottom: 3px solid #ffdd2d;
   }
+
   &:hover {
     border-bottom: #ffdd2d;
   }
@@ -55,6 +60,7 @@ body {
   position: relative;
   z-index: 0;
   background-image: linear-gradient(to right, #1489e7, #003e82);
+
   @media (max-width: 640px) {
     background-image: linear-gradient(to right, #168de7, #00428a);
   }
@@ -62,10 +68,12 @@ body {
 
 .cards-info {
   margin: 0 0 90px;
+
   @media (max-width: 640px) {
     margin: 0 0 30px;
     background-position: center 300%;
   }
+
   &::before {
     position: absolute;
     z-index: -1;
@@ -92,6 +100,7 @@ body {
   padding: 91px 0 74px;
   color: white;
   transform: translate(50%, 0);
+
   @media (max-width: 640px) {
     margin-left: 0;
     padding: 26px 0 30px;
@@ -105,6 +114,7 @@ body {
   font-weight: 100;
   font-size: 50px;
   line-height: 1;
+
   @media (max-width: 640px) {
     margin: 0 0 7px;
     font-size: 30px;
@@ -117,6 +127,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
+
   @media (max-width: 640px) {
     margin: 0 0 141px;
     line-height: 1.4;
@@ -135,12 +146,15 @@ body {
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
+
   &_order {
     padding: 19px 35px;
   }
+
   &_form-submittion{
     margin: 38px 0 42px;
     padding: 23px 86px;
+
     @media (max-width: 640px) {
       margin-bottom: 23px;
       width: 100%;
@@ -154,6 +168,7 @@ body {
   text-align: center;
   font-weight: 300;
   font-size: 50px;
+
   &_choice {
     margin: 30px 0 13px;
     font-size: 21px;
@@ -170,6 +185,7 @@ body {
   width: 100%;
   border: solid 1px #dddfe0;
   border-radius: 6px;
+
   @media (max-width: 640px) {
     margin: 24px auto 50px;
   }
@@ -226,6 +242,7 @@ body {
   margin: 67px auto 15px;
   max-width: 540px;
   text-align: center;
+
   @media (max-width: 640px) {
     margin: 15px auto 40px;
   }
@@ -239,6 +256,7 @@ body {
     padding: 0;
     border: none;
   }
+
   &_choice {
     margin: 0;
     padding: 0;
@@ -250,6 +268,7 @@ body {
   position: relative;
   margin: 24px 0;
   font-size: 17px;
+
   &_input {
     padding: 23px 20px;
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -259,6 +278,7 @@ body {
     background-color: #eef2f7;
     color: #333;
   }
+
   &_label {
     position: absolute;
     top: 22px;
@@ -295,6 +315,7 @@ body {
 }
 
 .card-form__error{
+
   &_sign {
     position: absolute;
     background-color: inherit;
@@ -309,6 +330,7 @@ body {
     height: 66px;
     border-radius: 6px;
   }
+
   &_message {
     display: none;
     margin: 11px 0 4px;
@@ -329,6 +351,7 @@ body {
 .card-form__help {
   position: absolute;
   border-radius: 6px;
+
   &_sign {
     top: 0;
     right: 0;
@@ -341,6 +364,7 @@ body {
     background-repeat: no-repeat;
     cursor: pointer;
   }
+
   &_message {
     top: 20px;
     right: 56px;
