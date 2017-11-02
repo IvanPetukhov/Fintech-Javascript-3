@@ -4,7 +4,6 @@
 @color-grey: #333;
 @color-white: #fff;
 
-
 body {
   font-family: @font-standart;
   font-size: 16px;
@@ -75,6 +74,7 @@ body {
 
 .cards-info {
   margin: 0 0 90px;
+  overflow: hidden;
 
   @media (max-width: @breakpoint-width) {
     margin: 0 0 30px;
@@ -104,8 +104,7 @@ body {
 }
 
 .cards-info__text {
-  margin-left: 430px;
-  padding: 91px 0 74px;
+  padding: 91px 16px 74px;
   color: @color-white;
   transform: translate(50%, 0);
 
@@ -186,6 +185,7 @@ body {
     margin: 30px 0 13px;
     font-size: 21px;
     line-height: 1.15;
+
     @media (max-width: @breakpoint-width) {
       font-size: 21px;
     }
@@ -415,7 +415,7 @@ body {
 
 .card-form__help_sign .card-form__help_message {
   outline: none;
-  background-color: @color-white;;
+  background-color: @color-white;
   border: solid 1px #dddfe0;
 }
 
