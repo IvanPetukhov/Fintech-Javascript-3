@@ -346,6 +346,7 @@ body {
     background-image: url(img/attention.svg);
     background-position: center;
     background-repeat: no-repeat;
+    top: 0;
     right: 0;
     display: none;
     padding: 0 24px;
@@ -376,6 +377,7 @@ body {
   border-radius: 6px;
 
   &_sign {
+    top: 0;
     right: 0;
     padding: 0 24px;
     width: 24px;
@@ -409,13 +411,15 @@ body {
 
 .card-form__help_sign:hover .card-form__help_message {
   display: block;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .card-form__help_sign .card-form__help_message {
   outline: none;
   background-color: @color-white;
   border: solid 1px #dddfe0;
-  transition: all 0.3s ease-in-out;
 }
 
 .choice-area {
