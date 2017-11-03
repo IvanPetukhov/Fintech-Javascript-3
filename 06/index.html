@@ -2,12 +2,132 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet/less" type="text/css" href="./main.less" />
+    <link rel="stylesheet/less" type="text/css" href="main.less" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js" ></script>
+    <link rel="stylesheet" href="https://github.com/necolas/normalize.css/">
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,700&amp;subset=cyrillic" rel="stylesheet">
     <title>Задание 6.1</title>
 </head>
 <body>
-<h1>Сверстать полную страницу (без футера).</h1>
+    <div class = "menu">
+        <div class = "wrapper">
+            <ul class = "menu__list">
+                <li class = "menu__item menu__item_active">
+                    <a href = "#">Карты</a>
+                </li>
+                <li class = "menu__item">
+                    <a href = "#">Вклады</a>
+                </li>
+                <li class = "menu__item">
+                    <a href = "#">Платежи и переводы</a>
+                </li>
+                <li class = "menu__item">
+                    <a href = "#">Бонусы</a>
+                </li>
+                <li class = "menu__item">
+                    <a href = "#">Страхование</a>
+                </li>
+                <li class = "menu__item">
+                    <a href = "#">О банке</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class = "banner-block">
+        <div class = "wrapper">
+            <div class = "cards-info">
+                <div class = "cards-info__text">
+                    <h1 class = "cards-info__header">Карты для вас<br>прямо сейчас</h1>
+                    <div class = "cards-info__descr">
+                        Выбирайте карту, пользуйтесь<br>удобными сервисами
+                    </div>
+                    <button class = "apply-button apply-button_order" type = "button">Оформить заявку</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "wrapper">
+        <h1 class = "block-header">Любые категории платежей</h1>
+        <div class = "tags">
+            <div class = "tags__elem">
+                <span class = "tags__describe">Кафе</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">Интернет</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">Телефон</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">Авто</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">ЖКХ</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">Одежда и обувь</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <div class = "tags__elem">
+                <span class = "tags__describe">Супермаркеты, гастрономы, универмаги и к</span>
+                <button class = "tags__remove" type = "button" title = "Удалить"></button>
+            </div>
+            <input class = "tags__input">
+        </div>
+    </div>
+    <h1 class = "block-header">Заполните несколько<br>простых полей</h1>
+    <div class = "wrapper">
+        <form class = "card-form">
+            <fieldset class = "card-form__fieldset card-form__fieldset_text">
+                <div class = "card-form__elem">
+                    <input id = "name-form" class = "card-form__elem card-form__elem_input" type = "text" required>
+                    <label class = "card-form__elem card-form__elem_label" for = "name-form">ФИО</label>
+                </div>
+                <div class = "card-form__elem">
+                    <input id = "city-form" class = "card-form__elem card-form__elem_input" type = "text" required>
+                    <label class = "card-form__elem card-form__elem_label" for = "city-form">Город проживания</label>
+                    <div class = "card-form__error card-form__error_sign"></div>
+                    <div class = "card-form__error card-form__error_message">Для заполнения этого поля не допустимо использовать буквы латинского алфавита</div>
+                </div>
+                <div class = "card-form__elem">
+                    <input id = "phone-form" class = "card-form__elem card-form__elem_input" type = "text" required>
+                    <label class = "card-form__elem card-form__elem_label" for = "phone-form">Мобильный телефон</label>
+                </div>
+                <div class = "card-form__elem">
+                    <input id = "email-form" class = "card-form__elem card-form__elem_input" type = "text" required>
+                    <label class = "card-form__elem card-form__elem_label" for = "email-form">E-mail</label>
+                    <div class = "card-form__help card-form__help_sign">
+                        <p class = "card-form__help card-form__help_message">Ваши данные замаскированы в целях безопасности. Для изменения информации с вами свяжется оператор колл-центра.</p>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class = "card-form__fieldset card-form__fieldset_choice">
+                <legend class = "block-header block-header_choice">Выберите это или другое</legend>
+                <div class = "choice-area">
+                    <div class = "choice-area__elem">
+                        <label class = "choice-area__label">Это
+                        <input type = "radio" class = "choice-area__radio" name="radio" checked>
+                        <span class = "choice-area__mark"></span>
+                        </label>
+                    </div>
+                    <div class = "choice-area__elem">
+                        <label class = "choice-area__label">Другое
+                            <input type = "radio" class = "choice-area__radio" name="radio">
+                            <span class = "choice-area__mark"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <button class = "apply-button apply-button_submit">Отправить</button>
+        </form>
+    </div>
+<!--<h1>Сверстать полную страницу (без футера).</h1>
 <h4>Макеты:</h4>
 <ul>
     <li><a href="https://app.zeplin.io/project/58a307271a9f6d513890adc8/screen/58a307604687f0394b3ba039">Desktop 1</a></li>
@@ -20,10 +140,10 @@
     <li>До брейкпойнта верстка ломаться не должна, если ломается и никак иначе не избежать, ввести промежуточный брейкпойнт.</li>
     <li>Использоваться БЭМ-нэйминг для классов.</li>
     <li>Использовать less.</li>
-    <li>Повторяющиеся размера, цвета вынести в переменные.</li>
+    <li>Повторяющиеся размеры, цвета вынести в переменные.</li>
     <li>Для элементов, у которых могут меняться состояние (цвет текста, бордер, фон, размер, позиция и тп), добавить transition.</li>
     <li>Тултип также должен появляться с анимацией.</li>
     <li>Для иконок использовать svg.</li>
-</ul>
+</ul>-->
 </body>
 </html>
