@@ -18,7 +18,7 @@ function throttle(time, callback) {
     setTimeout(() => {
       isThrottled = false;
     }, time);
-  };
+  }
 
   return wrapper;
 }
